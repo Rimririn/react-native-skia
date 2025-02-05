@@ -1,8 +1,7 @@
 {
-  "name": "react-native-skia-dev-tools",
   "version": "1.0.0",
   "description": "## Getting started",
-
+  "private": true,
   "directories": {
     "example": "example"
   },
