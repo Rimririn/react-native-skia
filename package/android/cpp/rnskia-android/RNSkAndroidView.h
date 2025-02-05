@@ -81,14 +81,15 @@ public:
     std::vector<RNSkia::RNSkTouchInfo> points;
     auto pin = touches.pin();
     auto scale = getPixelDensity();
-    points.reserve(pin.size() / 5);
-    for (size_t i = 0; i < pin.size(); i += 5) {
+    points.reserve(pin.size() / 6);
+    for (size_t i = 0; i < pin.size(); i += 6) {
       RNSkTouchInfo point;
       point.x = pin[i] / scale;
       point.y = pin[i + 1] / scale;
       point.force = pin[i + 2];
       point.type = (RNSkia::RNSkTouchInfo::TouchType)pin[i + 3];
       point.id = pin[i + 4];
+      point.pointerType = static_cast<int>(pin[i + 5]);
       points.push_back(point);
     }
     T::updateTouchState(points);

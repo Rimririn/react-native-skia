@@ -146,6 +146,7 @@ using RNSkTouchInfo = struct {
   TouchType type;
   size_t id;
   long timestamp;
+  int pointerType; // 0=Unknown/Finger, 1=Pencil
 };
 
 class RNSkView : public std::enable_shared_from_this<RNSkView> {

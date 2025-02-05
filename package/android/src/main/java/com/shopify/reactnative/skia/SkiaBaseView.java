@@ -66,7 +66,7 @@ public abstract class SkiaBaseView extends ReactViewGroup implements TextureView
         switch (action) {
             case MotionEvent.ACTION_POINTER_DOWN:
             case MotionEvent.ACTION_POINTER_UP: {
-                points = new double[5];
+                points = new double[6];
                 int pointerIndex = ev.getActionIndex();
                 ev.getPointerCoords(pointerIndex, r);
                 points[0] = r.x;
@@ -74,7 +74,14 @@ public abstract class SkiaBaseView extends ReactViewGroup implements TextureView
                 points[2] = ev.getPressure(pointerIndex);
                 points[3] = motionActionToType(action);
                 points[4] = ev.getPointerId(pointerIndex);
-
+                {
+                    int toolType = ev.getToolType(pointerIndex);
+                    double pType = 0.0;
+                    if (toolType == MotionEvent.TOOL_TYPE_STYLUS) {
+                        pType = 1.0;
+                    }
+                    points[5] = pType;
+                }
                 updateTouchPoints(points);
 
                 break;
@@ -83,7 +90,7 @@ public abstract class SkiaBaseView extends ReactViewGroup implements TextureView
                 // For the rest we can just handle it like expected
                 int count = ev.getPointerCount();
                 int pointerIndex = 0;
-                points = new double[5 * count];
+                points = new double[6 * count];
                 for (int i = 0; i < count; i++) {
                     ev.getPointerCoords(i, r);
                     points[pointerIndex++] = r.x;
@@ -91,6 +98,15 @@ public abstract class SkiaBaseView extends ReactViewGroup implements TextureView
                     points[pointerIndex++] = ev.getPressure(i);
                     points[pointerIndex++] = motionActionToType(action);
                     points[pointerIndex++] = ev.getPointerId(i);
+                     // pointerType
+                    {
+                        int toolType = ev.getToolType(i);
+                        double pType = 0.0;
+                        if (toolType == MotionEvent.TOOL_TYPE_STYLUS) {
+                            pType = 1.0;
+                        }
+                        points[pointerPos++] = pType;
+                    }
                 }
 
                 updateTouchPoints(points);

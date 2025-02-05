@@ -25,6 +25,7 @@ export interface TouchInfo {
   type: TouchType;
   id: number;
   timestamp: number;
+  pointerType: number;
 }
 
 export interface DrawingInfo {

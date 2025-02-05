@@ -201,6 +201,16 @@
       nextTouch.y = position.y;
       nextTouch.force = [touch force];
       nextTouch.id = [touch hash];
+      nextTouch.pointerType = 0;
+      // iOS 9.1 이상에서만 .pencil 사용 가능
+      #ifdef __IPHONE_9_1
+            if (@available(iOS 9.1, *)) {
+              if (touch.type == UITouchTypePencil) {
+                // Apple Pencil
+                nextTouch.pointerType = 1;
+              }
+            }
+      #endif
       auto phase = [touch phase];
       switch (phase) {
       case UITouchPhaseBegan:
