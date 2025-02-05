@@ -155,6 +155,7 @@ export abstract class SkiaBaseWebView<
       force: evt.pressure,
       type: touchType,
       timestamp: Date.now(),
+      pointerType: 0,
     });
     this.redraw();
   }

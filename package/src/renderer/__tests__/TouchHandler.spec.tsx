@@ -28,6 +28,7 @@ const SimpleActiveTouch = ({}: EmptyProps) => {
         type: TouchType.Start,
         id: 2,
         timestamp: 0,
+        pointerType: 0,
       },
     ],
     [
@@ -38,6 +39,7 @@ const SimpleActiveTouch = ({}: EmptyProps) => {
         type: TouchType.Active,
         id: 2,
         timestamp: 1,
+        pointerType: 0,
       },
     ],
   ];
@@ -74,6 +76,7 @@ const SimpleEndTouch = ({}: EmptyProps) => {
         type: TouchType.Start,
         id: 2,
         timestamp: 0,
+        pointerType: 1,
       },
     ],
     [
@@ -84,6 +87,7 @@ const SimpleEndTouch = ({}: EmptyProps) => {
         type: TouchType.Active,
         id: 2,
         timestamp: 1,
+        pointerType: 1,
       },
     ],
     [
@@ -94,6 +98,7 @@ const SimpleEndTouch = ({}: EmptyProps) => {
         type: TouchType.End,
         id: 2,
         timestamp: 2,
+        pointerType: 1,
       },
     ],
   ];
